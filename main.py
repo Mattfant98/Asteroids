@@ -1,3 +1,5 @@
+#This is the main game loop that generates the screen and actually checks for collision in the game loop. 
+#Objects are updated/redrawn every game loop(frame) which is 60FPS.
 import pygame
 from player import *
 from constants import *

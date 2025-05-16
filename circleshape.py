@@ -1,3 +1,5 @@
+#this class is used for the player hitbox as well as asterioids and bullets.
+#collision is basic and just checks if the distance between the center points of two circles is less than their summed radii.
 import pygame
 
 # Base class for game objects

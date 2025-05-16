@@ -1,3 +1,5 @@
+#this file is the asteroid field class which determines the bound in which asteroids can spawn. 
+#Spawning locations are randomized but will only spawn at edges.
 import pygame
 import random
 from asteroid import Asteroid

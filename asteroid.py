@@ -1,3 +1,7 @@
+#file containing the asteroid class, which inherets from circleshape class
+#draw actually draws the asteroid to the screen
+#update updates the position of the asteroid. Position is a Vector2
+#split will delete an asteroid if its the smallest type. If it is medium or large, it will break into 2 smaller asteroids and speed up
 from circleshape import *
 import pygame
 import random
