@@ -34,14 +34,16 @@ def main():
 
         updatable_group.update(dt)
 
+        #checking for bullet/asteroid collision and despawns if true
         for asteroid in asteroid_group:
             for shot in shot_group:
-                if asteroid.collision(shot):
-                    asteroid.kill()
+                if asteroid.collision(shot):  
+                    asteroid.split()             
                     shot.kill()
             else:
                 continue
 
+        #checking for player asteroid collision, exit if true
         for asteroid in asteroid_group:
             if asteroid.collision(player_sprite):
                 print("Game over!")
