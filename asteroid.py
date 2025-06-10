@@ -6,13 +6,15 @@ from circleshape import *
 import pygame
 import math
 import random
-from constants import ASTEROID_MIN_RADIUS, COLOR_LIST, PI
+from constants import ASTEROID_MIN_RADIUS, COLOR_LIST, PI, ROUGHNESS, ASTEROID_POINT_COUNT
+
 
 class Asteroid(CircleShape):
     def __init__(self, x, y, radius):
         super().__init__(x, y, radius)
         self.color = random.choice(COLOR_LIST)
         self.local_points = self.generate_lumpy_outline()
+        self.rotation = 0
 
     def draw(self, screen):
         screen_points = [
@@ -36,13 +38,13 @@ class Asteroid(CircleShape):
         asteroid_2 = Asteroid(self.position.x, self.position.y, new_radius)
         asteroid_2.velocity = new_vector_2 * 1.2
         
-    def generate_lumpy_outline(self, point_count=20, roughness=0.1):
-        angle_step = 2 * math.pi / point_count
+    def generate_lumpy_outline(self):
+        angle_step = 2 * PI / ASTEROID_POINT_COUNT
         points = []
 
-        for i in range(point_count):
+        for i in range(ASTEROID_POINT_COUNT):
             angle = i * angle_step
-            noise = random.uniform(1 - roughness, 1 + roughness)
+            noise = random.uniform(1 - ROUGHNESS, 1 + ROUGHNESS)
             r = self.radius * noise
             x = r * math.cos(angle)
             y = r * math.sin(angle)
