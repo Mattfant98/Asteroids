@@ -1,14 +1,13 @@
 #This is the main game loop that generates the screen and actually checks for collision in the game loop. 
 #Objects are updated/redrawn every game loop(frame) which is 60FPS.
 import pygame
-import os
 from player import *
 from constants import *
 from asteroidfield import *
 from circleshape import *
 from shot import *
 
-os.environ["SDL_AUDIODRIVER"] = "pulseaudio"
+
 
 def main():
     print("Starting Asteroids!")
@@ -17,7 +16,9 @@ def main():
 
     pygame.init()
     pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=512)
-    pygame.mixer.music.load('sounds/asteroids_theme.wav')
+    channel = pygame.mixer.Channel(0)
+    
+    pygame.mixer.music.load('asteroids_theme.wav')
     pygame.mixer.music.play(-1)
     clock = pygame.time.Clock()
     dt = 0
@@ -46,7 +47,10 @@ def main():
         #checking for bullet/asteroid collision and despawns if true
         for asteroid in asteroid_group:
             for shot in shot_group:
-                if asteroid.collision(shot):  
+                if asteroid.collision(shot):
+                    break_sound = pygame.mixer.Sound("asteroid_break.wav")
+                    break_sound.set_volume(0.5)
+                    pygame.mixer.Sound.play(break_sound)
                     asteroid.split()             
                     shot.kill()
             else:
@@ -55,6 +59,7 @@ def main():
         #checking for player asteroid collision, exit if true
         for asteroid in asteroid_group:
             if asteroid.collision(player_sprite):
+                pygame.mixer.quit()
                 print("Game over!")
                 exit()
             else:

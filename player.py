@@ -55,7 +55,8 @@ class Player(CircleShape):
         else:
             self.timer = SHOT_COOLDOWN
             shot = Shot(self.position.x, self.position.y)
-            shot_sound = pygame.mixer.Sound("sounds/shot_audio.wav")
+            shot_sound = pygame.mixer.Sound("shot_audio.wav")
+            shot_sound.set_volume(0.3)
             pygame.mixer.Sound.play(shot_sound)
 
             
