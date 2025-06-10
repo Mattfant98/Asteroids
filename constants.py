@@ -12,3 +12,4 @@ SHOT_RADIUS = 5
 PLAYER_SHOOT_SPEED = 500
 SHOT_COOLDOWN = 0.3
 COLOR_LIST = ["white","blue", "green", "pink", "red", "yellow", "orange", "purple", "brown"]
+PI = 3.141592653589793

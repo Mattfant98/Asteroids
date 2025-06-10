@@ -18,8 +18,9 @@ def main():
     pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=512)
     channel = pygame.mixer.Channel(0)
     
-    pygame.mixer.music.load('asteroids_theme.wav')
-    pygame.mixer.music.play(-1)
+    pygame.mixer.music.load("asteroids_theme.wav")
+    pygame.mixer.music.play(-1, 0.0, 5000)
+    pygame.mixer.music.set_volume(0.5)
     clock = pygame.time.Clock()
     dt = 0
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -56,9 +57,10 @@ def main():
             else:
                 continue
 
-        #checking for player asteroid collision, exit if true
+        #checking for player asteroid collision, exit if true 
         for asteroid in asteroid_group:
             if asteroid.collision(player_sprite):
+                pygame.mixer.music.unload()
                 pygame.mixer.quit()
                 print("Game over!")
                 exit()
