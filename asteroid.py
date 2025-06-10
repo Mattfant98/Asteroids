@@ -14,7 +14,6 @@ class Asteroid(CircleShape):
         super().__init__(x, y, radius)
         self.color = random.choice(COLOR_LIST)
         self.local_points = self.generate_lumpy_outline()
-        self.rotation = 0
 
     def draw(self, screen):
         screen_points = [
