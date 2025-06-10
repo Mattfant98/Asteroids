@@ -1,17 +1,24 @@
 #This is the main game loop that generates the screen and actually checks for collision in the game loop. 
 #Objects are updated/redrawn every game loop(frame) which is 60FPS.
 import pygame
+import os
 from player import *
 from constants import *
 from asteroidfield import *
 from circleshape import *
 from shot import *
+
+os.environ["SDL_AUDIODRIVER"] = "pulseaudio"
+
 def main():
     print("Starting Asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
 
     pygame.init()
+    pygame.mixer.init(frequency=44100, size=-16, channels=2, buffer=512)
+    pygame.mixer.music.load('sounds/asteroids_theme.wav')
+    pygame.mixer.music.play(-1)
     clock = pygame.time.Clock()
     dt = 0
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
